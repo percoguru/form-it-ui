@@ -4,6 +4,7 @@ import TextBox from './components/form-components/text-box';
 import { makeStyles, createStyles, Theme, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import SelectionPane from './components/selection-pane';
+import Form from './components/form-components/form';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,10 +34,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <Grid container xs={12} className={classes.root}>
         <Grid container xs={8}>
-          <TextBox disabled={false} count={numberOfFields} />
+          <Form/>
         </Grid>
         <Grid container xs={4}>
-          <SelectionPane selectFn={handleAddition} />
+          <SelectionPane />
         </Grid>
       </Grid>
     </ThemeProvider>

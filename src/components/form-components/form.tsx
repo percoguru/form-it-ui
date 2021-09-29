@@ -6,7 +6,6 @@ import { makeStyles, createStyles, Theme, createTheme, ThemeProvider } from '@ma
 import useStore from "../../store/store";
 import { Store } from "../../types/types";
 
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         dynamicForm: {
@@ -20,11 +19,16 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function TextBox() {
+export default function Form() {
+    const arr = [];
+    const numberOfFields = useStore((state: any) => state.numberOfFields)
+    for (let i = 0; i < numberOfFields; i += 1) {
+        arr.push(<TextField id="standard-basic" label="Standard" />)
+    }
     const classes = useStyles();
     return (
         <Grid item xs={12} className={classes.dynamicForm}>
-            <TextField id="standard-basic" label="Standard" disabled={true} />
+            {arr}
         </Grid>
     )
 }
