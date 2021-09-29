@@ -1,7 +1,6 @@
 import create from "zustand";
 import { Store } from "../types/types";
 
-
 const useStore = create((set) => ({
   numberOfFields: 0,
   addField: () => set((state: Store) => ({

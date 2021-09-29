@@ -1,6 +1,3 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import TextBox from './components/form-components/text-box';
 import { makeStyles, createStyles, Theme, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import SelectionPane from './components/selection-pane';
@@ -19,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function App() {
-  const [numberOfFields, setNumberofFields] = useState(1)
   const classes = useStyles();
   const theme = createTheme({
     palette: {
@@ -27,9 +23,6 @@ function App() {
       background: { paper: '#fff', default: '#000' }
     },
   });
-  const handleAddition = () => {
-    setNumberofFields(numberOfFields + 1)
-  }
   return (
     <ThemeProvider theme={theme}>
       <Grid container xs={12} className={classes.root}>

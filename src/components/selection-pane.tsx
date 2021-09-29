@@ -1,8 +1,6 @@
-import { Grid, TextField, Button } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import React from "react";
-import useStore from "../store/store";
-import { Store } from "../types/types";
+import useStore from "../store/store";;
 import TextBox from "./form-components/text-box";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -14,10 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     })
 )
-
-type Prop = {
-    selectFn: Function
-}
 
 function SelectionPane() {
     const classes = useStyles();
@@ -32,7 +26,6 @@ function SelectionPane() {
                 </Button>
             </Grid>
         </Grid >
-
     )
 }
 
