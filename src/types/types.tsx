@@ -1,4 +1,5 @@
-export type Store = {
+export interface Store extends Object {
     numberOfFields: number,
-    addField: any
+    addField: any,
+    removeField: any,
 }

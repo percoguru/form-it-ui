@@ -1,10 +1,7 @@
-import React from "react";
 import TextField from '@material-ui/core/TextField';
-import { count } from "console";
 import { Grid } from "@material-ui/core";
-import { makeStyles, createStyles, Theme, createTheme, ThemeProvider } from '@material-ui/core/styles';
-import useStore from "../../store/store";
-import { Store } from "../../types/types";
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import useStore from "../../store/store";;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
