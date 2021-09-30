@@ -1,7 +1,7 @@
 import { makeStyles, createStyles, Theme, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import SelectionPane from './components/selection-pane';
-import Form from './components/form-components/form';
+import SelectionPane from './components/selectionPane';
+import Form from './components/form';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

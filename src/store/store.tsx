@@ -1,15 +1,38 @@
 import create, { UseStore } from "zustand";
-import { Store } from "../types/types";
+import { ComponentType, Form, Store } from "../types/types";
+
+const getPersistedForm = (): Form => {
+  const valueFromLocalStorage: string | null = localStorage.getItem('form')
+  
+  if (valueFromLocalStorage) {
+    return JSON.parse(valueFromLocalStorage);
+  } 
+  return  {
+    description: 'This is a demo form',
+    title: 'Demo Form',
+    deadline: new Date(),
+    components: [
+    ]
+  };
+}
 
 const useStore: UseStore<Store> = create((set, get): Store => ({
-  numberOfFields: 0,
-  addField: () => set((state: Store) => ({
-    numberOfFields: state.numberOfFields + 1,
-  })),
-  removeField: () => {
-    if(get().numberOfFields === 0) return 
-    set({ numberOfFields: get().numberOfFields - 1})
+  addComponent: (component: ComponentType) => {
+    set((state: Store) => ({
+      form: { ...state.form, components: [...state.form.components, { id: state.form.components.length ,type: component, additional_info: {}}]}
+      
+  }));
+  localStorage.setItem('form', JSON.stringify(get().form));
   },
+  removeComponent: (id: number) => {
+    if(get().form.components.length === 0) return 
+    const {components} = get().form;
+    components.splice(id, 1);
+    set((state: Store) => ({
+      form: { ...state.form, components: components }
+    }))
+  },
+  form: getPersistedForm(),
 }));
 
 export default useStore;

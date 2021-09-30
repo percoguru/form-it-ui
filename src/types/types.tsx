@@ -1,5 +1,20 @@
 export interface Store extends Object {
-    numberOfFields: number,
-    addField: any,
-    removeField: any,
+    addComponent: any,
+    removeComponent: any,
+    form: Form
+};
+
+export interface Component extends Object {
+    id: number,
+    type: ComponentType,
+    additional_info: Object
 }
+
+export interface Form extends Object {
+    title: string,
+    deadline: Date,
+    description: string,
+    components: Component[],
+}
+
+export type ComponentType = 'TextBox' | 'CheckBox';

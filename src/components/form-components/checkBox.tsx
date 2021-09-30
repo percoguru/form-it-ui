@@ -1,7 +1,8 @@
 import TextField from '@material-ui/core/TextField';
-import { Grid } from "@material-ui/core";
+import { Grid, Checkbox } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import useStore from "../../store/store";;
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,16 +17,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function Form() {
-    const arr = [];
-    const numberOfFields = useStore((state: any) => state.numberOfFields)
-    for (let i = 0; i < numberOfFields; i += 1) {
-        arr.push(<TextField id="standard-basic" label="Standard" />)
-    }
+export default function CheckBox() {
     const classes = useStyles();
     return (
         <Grid item xs={12} className={classes.dynamicForm}>
-            {arr}
+            <Checkbox {...label} disabled />
         </Grid>
     )
 }
