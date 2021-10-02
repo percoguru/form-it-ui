@@ -1,7 +1,7 @@
-import TextBox from "./textBox";
-import CheckBox from "./checkBox";
+import TextBox from './textBox';
+import CheckBox from './checkBox';
 
 export const COMPONENT_TYPE = {
-    CheckBox: TextBox,
-    TextBox: CheckBox,
-}
+  CheckBox: TextBox,
+  TextBox: CheckBox,
+};
