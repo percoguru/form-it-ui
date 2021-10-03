@@ -35,11 +35,13 @@ const useStore: UseStore<Store> = create((set, get): Store => ({
     set((state: Store) => ({
       form: { ...state.form, components: components },
     }));
+    localStorage.setItem('form', JSON.stringify(get().form));
   },
   setTitle: (title: string) => {
     set((state: Store) => ({
       form: { ...state.form, title: title },
     }));
+    localStorage.setItem('form', JSON.stringify(get().form));
   },
   form: getPersistedForm(),
 }));

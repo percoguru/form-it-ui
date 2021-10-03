@@ -3,12 +3,13 @@ import { Box } from '@mui/system';
 import React from 'react';
 import SelectionPane from './components/selectionPane';
 import Form from './components/form';
+import { Grid } from '@mui/material';
 
 function App() {
   // const classes = useStyles();
   const theme = createTheme({
     palette: {
-      mode: 'light',
+      mode: 'dark',
       primary: {
         main: '#6e88fd',
       },
@@ -22,30 +23,18 @@ function App() {
       <Box
         sx={{
           bgcolor: 'background.paper',
-          // flexGrow: 0,
           minHeight: '100vh',
-          display: 'flex',
-          alignContent: 'flex-start',
-          justifyContent: 'center',
         }}
         className="root"
       >
-        <Box
-          sx={{
-            display: 'flex',
-            flexGrow: 2,
-          }}
-        >
-          <Form />
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexGrow: 1,
-          }}
-        >
-          <SelectionPane />
-        </Box>
+        <Grid container xs={12}>
+          <Grid container xs={8}>
+            <Form />
+          </Grid>
+          <Grid container xs={4}>
+            <SelectionPane />
+          </Grid>
+        </Grid>
       </Box>
     </ThemeProvider>
   );
