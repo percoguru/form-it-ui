@@ -1,11 +1,10 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Box } from '@mui/system';
 import React from 'react';
-import SelectionPane from './components/selectionPane';
-import Form from './components/form';
-import { Grid } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import FormPage from './pages/formsPage';
+import DetailsPage from './pages/detailsPage';
 
-function App() {
+function App(): JSX.Element {
   // const classes = useStyles();
   const theme = createTheme({
     palette: {
@@ -20,22 +19,30 @@ function App() {
   });
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          bgcolor: 'background.paper',
-          minHeight: '100vh',
-        }}
-        className="root"
-      >
-        <Grid container xs={12}>
-          <Grid container xs={8}>
-            <Form />
-          </Grid>
-          <Grid container xs={4}>
-            <SelectionPane />
-          </Grid>
-        </Grid>
-      </Box>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/form">Form</Link>
+              </li>
+            </ul>
+          </nav>
+          {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/form">
+              <DetailsPage />
+            </Route>
+            <Route path="/">
+              <FormPage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </ThemeProvider>
   );
 }
