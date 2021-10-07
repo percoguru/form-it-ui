@@ -23,6 +23,6 @@
     "camelcase": 0,
     "no-underscore-dangle": 0,
     "space-before-function-paren": 0,
-    "quotes": 1,
+    "quotes": [1, "single"]
   }
 }
