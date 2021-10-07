@@ -9,7 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
 
 function SelectionPane() {
-  const addComponent = useStore((state: Store) => state.addComponent);
+  // const addComponent = useStore((state: Store) => state.addComponent);
   return (
     <Box sx={{ p: 1, width: '100%' }}>
       <Grid container xs={12}>
@@ -28,7 +28,7 @@ function SelectionPane() {
               p: 1,
             }}
           >
-            <IconButton aria-label="Example" onClick={() => addComponent('TextBox')}>
+            <IconButton aria-label="Example">
               <AddIcon></AddIcon>
             </IconButton>
           </Box>
@@ -49,7 +49,7 @@ function SelectionPane() {
               p: 1,
             }}
           >
-            <IconButton aria-label="Example" onClick={() => addComponent('CheckBox')}>
+            <IconButton aria-label="Example">
               <AddIcon></AddIcon>
             </IconButton>
           </Box>
