@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 export default function Header() {
-  const title = useStore((state: Store) => state.form.title);
+  const title = useStore((state: Store) => state.form.name);
   const [currentTitle, setCurrentTitle] = useState(title);
   const setTitle = useStore((state: Store) => state.setTitle);
 

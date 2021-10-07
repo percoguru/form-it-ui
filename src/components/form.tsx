@@ -14,22 +14,22 @@ const buildComponent = () => {
   <Grid item xs={12}></Grid>;
 };
 
-const buildForm = () => {
-  const { components } = useStore((state: Store) => state.form);
+// const buildForm = () => {
+//   const { components } = useStore((state: Store) => state.form);
 
-  for (let i = 0; i < components.length; i += 1) {
-    const component = components[i];
+//   for (let i = 0; i < components.length; i += 1) {
+//     const component = components[i];
 
-    const { type } = component;
-  }
-};
+//     const { type } = component;
+//   }
+// };
 
-export default function Form() {
+export default function Form(): JSX.Element {
   const arr = [];
   const form = useStore((state: Store) => state.form);
-  const removeComponent = useStore((state: Store) => state.removeComponent);
-  for (let i = 0; i < form.components.length; i += 1) {
-    const { type } = form.components[i];
+  // const removeComponent = useStore((state: Store) => state.removeComponent);
+  for (let i = 0; i < form.formPages[0].form_data.components.length; i += 1) {
+    const { type } = form.formPages[0].form_data.components[i];
     if (type === 'CheckBox') {
       arr.push(
         <Paper>
@@ -38,7 +38,7 @@ export default function Form() {
               <CheckBox />
             </Grid>
             <Grid item xs={2}>
-              <IconButton aria-label="Example" onClick={() => removeComponent(i)}>
+              <IconButton aria-label="Example">
                 <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>
               </IconButton>
               {/* <Button variant="text" onClick={() => removeComponent(i)}>
@@ -56,7 +56,7 @@ export default function Form() {
               <TextBox />
             </Grid>
             <Grid item xs={2}>
-              <IconButton aria-label="Example" onClick={() => removeComponent(i)}>
+              <IconButton aria-label="Example">
                 <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>
               </IconButton>
             </Grid>
