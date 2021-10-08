@@ -1,5 +1,3 @@
-import uuid from 'uuid';
-
 export interface Store extends Object {
   addComponent: (formId: string, type: ComponentType) => void;
   removeComponent: (formId: string, id: number) => void;
@@ -7,13 +5,13 @@ export interface Store extends Object {
   updateForm: (
     formId: string,
     updateObj: {
-      title: string | undefined,
+      name: string | undefined,
       description: string | undefined,
       subtitle: string | undefined,
     },
   ) => void;
   user: string;
-  createForm: () => Promise<string>;
+  createForm: (title: string) => Promise<string>;
   deleteForm: (formId: string) => void;
   saveForm: (formId: string) => void;
 }
@@ -33,6 +31,7 @@ export interface FormPage extends Object {
 }
 
 export interface Form extends Object {
+  id: string;
   owner: string;
   organization: string;
   name: string;
