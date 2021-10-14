@@ -1,42 +1,24 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Box } from '@mui/system';
 import React from 'react';
-import SelectionPane from './components/selectionPane';
-import Form from './components/form';
-import { Grid } from '@mui/material';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import CreateForm from './pages/createForm';
+import FormPage from './pages/form';
+import Home from './pages/home';
 
-function App() {
-  // const classes = useStyles();
-  const theme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#6e88fd',
-      },
-      secondary: {
-        main: '#f50057',
-      },
-    },
-  });
+function App(): JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          bgcolor: 'background.paper',
-          minHeight: '100vh',
-        }}
-        className="root"
-      >
-        <Grid container xs={12}>
-          <Grid container xs={8}>
-            <Form />
-          </Grid>
-          <Grid container xs={4}>
-            <SelectionPane />
-          </Grid>
-        </Grid>
-      </Box>
-    </ThemeProvider>
+    <Router>
+      <Switch>
+        <Route path="/createForm">
+          <CreateForm />
+        </Route>
+        <Route path="/form/:formId">
+          <FormPage />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
