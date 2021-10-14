@@ -20,7 +20,52 @@ const emptyForm = (): Form => ({
     description: ''
 })
 
-const createFormDetails = (form: Form): JSX.Element[] => {
+
+const FormPage = (): JSX.Element => {
+    const forms = useStore((state: Store) => state.forms)
+    console.log(forms)
+    // eslint-disable-next-line prettier/prettier
+    const { formId } = useParams<{ formId: string }>();
+
+    const formData = forms.find((form) => form.id === formId);
+    
+    const [form, setForm] = useState<Form>(formData ? formData : emptyForm);
+    const [formPresent, setFormPresent] = useState(formData ? true : false);
+    
+    // const [formComponents, setFormComponents] = useState<JSX.Element[]>([]);
+
+    useEffect(() => {
+        const getForm = async () => {
+            if (formId) {
+                try {
+                    const url = `http://localhost:3010/api/form/${formId}`;
+                    const response = await axios.get(url).then((res) => res);
+                    
+                    const { data: form } = response;
+
+                    if (!form) return;
+
+                    setForm(form);
+
+                    setFormPresent(true);
+                
+                } catch (e) {
+                            console.log(e)
+                        }
+                  }
+            }
+
+        if (!formPresent) {
+            getForm();
+        }
+    })
+
+    
+const createFormDetails = (): JSX.Element[] => {
+  const form = forms.find((eachForm) => eachForm.id === formId)
+
+  if (!form) return ([<p key="1">404</p>])
+  
     const { formPages } = form;
 
     if (!formPages || !formPages.length) {
@@ -52,67 +97,16 @@ const createFormDetails = (form: Form): JSX.Element[] => {
     return arr;
 }
 
-const FormPage = (): JSX.Element => {
-    const forms = useStore((state: Store) => state.forms)
-    console.log(forms)
-    // eslint-disable-next-line prettier/prettier
-    const { formId } = useParams<{ formId: string }>();
-
-    const formData = forms.find((form) => form.id === formId);
-    
-    const [form, setForm] = useState<Form>(formData ? formData : emptyForm);
-    const [formPresent, setFormPresent] = useState(formData ? true : false);
-    
-    const [formComponents, setFormComponents] = useState<JSX.Element[]>([]);
-
-    useEffect(() => {
-        const getForm = async () => {
-            if (formId) {
-                try {
-                    const url = `http://localhost:3010/api/form/${formId}`;
-                    const response = await axios.get(url).then((res) => res);
-                    
-                    const { data: form } = response;
-
-                    if (!form) return;
-
-                    setForm(form);
-
-                    setFormPresent(true);
-                
-                } catch (e) {
-                            console.log(e)
-                        }
-                  }
-            }
-
-        if (!formPresent) {
-            getForm();
-        }
-    })
-
-    useEffect(() => {
-        if (formPresent) {
-            const components = createFormDetails(form);
-
-            setFormComponents(components)
-        }
-    }, [form])
-  
-
     return (
         <Flex height="100vh" backgroundColor="gray.300" direction="column">
             <Grid templateColumns="repeat(5, 1fr)" height="100%">
-                <GridItem colSpan={3}  p={12}>
+                <GridItem colSpan={3} p={12} height="100%">
                     <Heading>
                         {formPresent ? form.name : 'Demo'}
                     </Heading>
                     <Text fontSize="xl">{form.description}</Text>
                     <Flex p={12} direction="column" alignContent="center" justifyContent="center">
-                        {formComponents}
-                        {/* {form.formPages[0].formData.components.map((component) => {
-                          if (co)
-                        })} */}
+                        {createFormDetails()}
                     </Flex>
                 </GridItem>
                 <GridItem colSpan={2} backgroundColor="gray.500">
